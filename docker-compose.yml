@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  node-app:
+    build:
+      context: .
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - mongodb
+    volumes:
+      - app:/data/db 
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - db:/data/db 
+
+volumes:
+  app:
+  db:
+
